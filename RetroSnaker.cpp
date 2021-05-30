@@ -41,8 +41,8 @@ int menu() {
 void Init(Snaker* snaker , Food* food)
 {
     //播放音乐
-    mciSendString("open ./bgm.mp3 alias BGM", 0, 0, 0);
-    mciSendString("play BGM repeat", 0, 0, 0);
+    mciSendString(TEXT("open ./bgm.mp3 alias BGM"), 0, 0, 0);
+    mciSendString(TEXT("play BGM repeat"), 0, 0, 0);
     snaker->grade = 0;//初始分数为0
     snaker->size = 5;//初始长度为5
     snaker->dir = RIGHT;//开始向右
@@ -93,7 +93,8 @@ void GameDraw(Snaker* snaker, Food* food)//方形蛇
 {
 
     //批量绘制绘图防屏闪
-
+    if(snaker->flag==0)
+        return;
     cleardevice();//清屏
     /*IMAGE img;
     loadimage(&img, "背景.jpg", 0, 0);
@@ -355,6 +356,7 @@ void Esc()
     }
 }
 void SnakerDie(Snaker* snaker, Food* food) {
+
     if (snaker->coor[0].x >= LENGTH || snaker->coor[0].x < 0 ||
         snaker->coor[0].y >= WIDTH || snaker->coor[0].y < 0) {
         settextcolor(LIGHTGREEN);
@@ -368,6 +370,7 @@ void SnakerDie(Snaker* snaker, Food* food) {
         outtextxy(240, 240, grade)*/;
         snaker->flag = 0;
         mciSendString(TEXT("close BGM"), 0, 0, 0);
+        FlushBatchDraw();
         return;
     }
     for (int i = 1; i < snaker->size; i++) {
@@ -383,6 +386,7 @@ void SnakerDie(Snaker* snaker, Food* food) {
             outtextxy(240, 240, grade)*/;
             snaker->flag = 0;
             mciSendString(TEXT("close BGM"), 0, 0, 0);
+            FlushBatchDraw();
             return;
         }
     }

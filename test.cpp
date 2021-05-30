@@ -14,6 +14,7 @@ void Game(Snaker* snaker, Food* food)
     SnakerMove(snaker);
     SnakerDie(snaker, food);
     GameDraw(snaker,food);
+
 }
 
 int main()
@@ -37,7 +38,7 @@ int main()
             Sleep(snaker.s);
 
         }while (snaker.flag);
-        Sleep(1000);
+        Sleep(2000);
         cleardevice();
     }
     return 0;
