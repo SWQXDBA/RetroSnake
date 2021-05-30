@@ -41,8 +41,8 @@ int menu() {
 void Init(Snaker* snaker , Food* food)
 {
     //播放音乐
-    mciSendString(TEXT("open ./bgm.mp3 alias BGM"), 0, 0, 0);
-    mciSendString(TEXT("play BGM repeat"), 0, 0, 0);
+    mciSendString("open ./bgm.mp3 alias BGM", 0, 0, 0);
+    mciSendString("play BGM repeat", 0, 0, 0);
     snaker->grade = 0;//初始分数为0
     snaker->size = 5;//初始长度为5
     snaker->dir = RIGHT;//开始向右
